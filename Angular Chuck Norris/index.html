@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Angular Chuck Norris</title>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> <!--CSS modern view-->
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<style>
+table, th , td  {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+}
+table tr:nth-child(odd) {
+  background-color: #f1f1f1;
+}
+table tr:nth-child(even) {
+  background-color: #ffffff;
+}
+</style>
+</head>
+
+<body>
+
+<div ng-app="myApp" ng-controller="tableCtrl"> 
+
+
+<h1>Chuck Norris Jokes</h1>
+<h4>Filter your joke:</h4>
+
+<input type="text" ng-model="test">
+<br><br>
+<table>
+	<th>Joke N°</th>
+	<th>Categories</th>
+  <tr ng-repeat="x in myData | filter: test">
+  <td> <a href="#"> {{ x.id }} </a></td>
+ 	<td>{{ x.categories[0]}}</td>
+  </tr>
+</table>
+
+</div>
+
+<script>
+var app = angular.module('myApp',[]);
+app.controller('tableCtrl', function($scope, $http) {
+  $http.get("http://api.icndb.com/jokes").then(function (response) {
+      $scope.myData = response.data.value;
+  });
+});
+
+
+</script>
+
+
+
+
+</body>
+</html>
