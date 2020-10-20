@@ -1,1 +1,3 @@
-# Angular-Chuck-Norris
+# AngularJS-Chuck-Norris
+
+Repository to learn angularJS
